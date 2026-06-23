@@ -48,3 +48,15 @@ it("el estado es GANASTE cuando se aciertan todas las letras", () => {
   juego.adivinar("O");
   expect(juego.estado()).toBe("GANASTE");
 });
+
+it("el estado es PERDISTE cuando las vidas llegan a 0", () => {
+  const juego = new Ahorcado("GATO");
+  "ZXCVBN".split("").forEach((l) => juego.adivinar(l));
+  expect(juego.estado()).toBe("PERDISTE");
+});
+
+it("revela toda la palabra cuando se pierde", () => {
+  const juego = new Ahorcado("GATO");
+  "ZXCVBN".split("").forEach((l) => juego.adivinar(l));
+  expect(juego.palabraEnmascarada()).toBe("G A T O");
+});
