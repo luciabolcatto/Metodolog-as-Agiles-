@@ -60,3 +60,18 @@ it("revela toda la palabra cuando se pierde", () => {
   "ZXCVBN".split("").forEach((l) => juego.adivinar(l));
   expect(juego.palabraEnmascarada()).toBe("G A T O");
 });
+
+it("no descuenta vida si la letra se repite", () => {
+  const juego = new Ahorcado("GATO");
+  juego.adivinar("E");
+  expect(juego.vidas()).toBe(5);
+  juego.adivinar("E");
+  expect(juego.vidas()).toBe(5);
+});
+
+it("informa si la letra ya fue intentada", () => {
+  const juego = new Ahorcado("GATO");
+  juego.adivinar("A");
+  juego.adivinar("A");
+  expect(juego.mensaje()).toBe("Ya intentaste con esa letra");
+});
