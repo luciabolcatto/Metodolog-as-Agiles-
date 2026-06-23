@@ -34,3 +34,17 @@ it("fallar una letra no altera la palabra enmascarada", () => {
   juego.adivinar("E");
   expect(juego.palabraEnmascarada()).toBe("_ _ _ _");
 });
+
+it("el estado inicial es JUGANDO", () => {
+  const juego = new Ahorcado("GATO");
+  expect(juego.estado()).toBe("JUGANDO");
+});
+
+it("el estado es GANASTE cuando se aciertan todas las letras", () => {
+  const juego = new Ahorcado("GATO");
+  juego.adivinar("G");
+  juego.adivinar("A");
+  juego.adivinar("T");
+  juego.adivinar("O");
+  expect(juego.estado()).toBe("GANASTE");
+});
