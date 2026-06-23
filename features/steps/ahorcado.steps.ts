@@ -3,8 +3,19 @@ import { createBdd } from "playwright-bdd";
 
 const { Given, When, Then } = createBdd();
 
+let dificultadSeleccionada = "media"; 
+
+Given("que el jugador selecciona la dificultad {string}", async ({ page }, dificultad: string) => {
+  dificultadSeleccionada = dificultad.toLowerCase();
+});
+
 Given("una partida con la palabra {string}", async ({ page }, palabra: string) => {
-  await page.goto(`/?word=${palabra}`);
+  await page.goto(`/?word=${palabra}&difficulty=${dificultadSeleccionada}`);
+});
+
+When("inicia una partida con la palabra {string}", async ({ page }, palabra: string) => {
+  await page.goto(`/?word=${palabra}&difficulty=${dificultadSeleccionada}`);
+  dificultadSeleccionada = "media";
 });
 
 When("el jugador adivina la letra {string}", async ({ page }, letra: string) => {
