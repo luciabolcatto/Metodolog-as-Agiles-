@@ -2,6 +2,7 @@ export class Ahorcado {
   private palabra: string;
   private _vidas: number = 6;
   private letrasAdivinadas: Set<string> = new Set();
+  private _mensaje: string | null = null;
 
   constructor(palabra: string) {
     this.palabra = palabra;
@@ -9,10 +10,19 @@ export class Ahorcado {
 
   adivinar(letra: string): void {
     const letraUpper = letra.toUpperCase();
+    if (this.letrasAdivinadas.has(letraUpper)) {
+      this._mensaje = "Ya intentaste con esa letra";
+      return;
+    }
+    this._mensaje = null;
     this.letrasAdivinadas.add(letraUpper);
     if (!this.palabra.includes(letraUpper)) {
       this._vidas--;
     }
+  }
+
+  mensaje(): string | null {
+    return this._mensaje;
   }
 
   palabraEnmascarada(): string {
