@@ -5,7 +5,7 @@ export function mountApp(container: HTMLElement, juego: Ahorcado): void {
     container.innerHTML = `
       <p data-testid="word">${juego.palabraEnmascarada()}</p>
       <p data-testid="lives">${juego.vidas()}</p>
-      <p data-testid="mensaje">${juego.estado() !== "JUGANDO" ? juego.estado() : ""}</p>
+      <p data-testid="mensaje">${juego.estado() !== "JUGANDO" ? juego.estado() : (juego.mensaje() || "")}</p>
       <input type="text" maxlength="1" />
     `;
 
