@@ -25,4 +25,13 @@ export class Ahorcado {
   vidas(): number {
     return this._vidas;
   }
+
+  estado(): string {
+    const todasAdivinadas = this.palabra.split("").every((l) => this.letrasAdivinadas.has(l));
+    if (todasAdivinadas) {
+      return "GANASTE";
+    }
+    return "JUGANDO";
+  }
 }
+
