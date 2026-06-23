@@ -4,9 +4,18 @@ export class Ahorcado {
   private letrasAdivinadas: Set<string> = new Set();
   private _mensaje: string | null = null;
 
-  constructor(palabra: string) {
+  constructor(palabra: string, dificultad: string = "media") {
     this.palabra = palabra;
+  
+  if (dificultad === "dificil") {
+      this._vidas = 4;
+    } else if (dificultad === "facil") {
+      this._vidas = 8;
+    } else {
+      this._vidas = 6; // Para "media" o si no pasan el parámetro
+    }
   }
+  
 
   adivinar(letra: string): void {
     if (this.estado() !== "JUGANDO") {

@@ -92,5 +92,4 @@ it("no permite jugar si el estado es GANASTE o PERDISTE", () => {
 
 it("asigna 4 vidas iniciales cuando la dificultad es dificil", () => {
   const juego = new Ahorcado("GATO", "dificil");
-  expect(juego.getVidas()).toBe(4);
-});
+  expect(juego.vidas()).toBe(4); });
