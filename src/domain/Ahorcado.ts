@@ -9,6 +9,14 @@ export class Ahorcado {
   }
 
   adivinar(letra: string): void {
+    if (this.estado() !== "JUGANDO") {
+      this._mensaje = "La partida ya terminó";
+      return;
+    }
+    if (!/^[a-zA-ZñÑ]$/.test(letra)) {
+      this._mensaje = "Entrada inválida";
+      return;
+    }
     const letraUpper = letra.toUpperCase();
     if (this.letrasAdivinadas.has(letraUpper)) {
       this._mensaje = "Ya intentaste con esa letra";
