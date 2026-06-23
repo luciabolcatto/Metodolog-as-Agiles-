@@ -75,3 +75,17 @@ it("informa si la letra ya fue intentada", () => {
   juego.adivinar("A");
   expect(juego.mensaje()).toBe("Ya intentaste con esa letra");
 });
+
+it("informa si se ingresa un número u otro caracter inválido", () => {
+  const juego = new Ahorcado("GATO");
+  juego.adivinar("1");
+  expect(juego.mensaje()).toBe("Entrada inválida");
+  expect(juego.vidas()).toBe(6);
+});
+
+it("no permite jugar si el estado es GANASTE o PERDISTE", () => {
+  const juego = new Ahorcado("GATO");
+  "GATO".split("").forEach((l) => juego.adivinar(l));
+  juego.adivinar("Z");
+  expect(juego.mensaje()).toBe("La partida ya terminó");
+});
