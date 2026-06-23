@@ -16,6 +16,9 @@ export class Ahorcado {
   }
 
   palabraEnmascarada(): string {
+    if (this.estado() === "PERDISTE") {
+      return this.palabra.split("").join(" ");
+    }
     return this.palabra
       .split("")
       .map((l) => (this.letrasAdivinadas.has(l) ? l : "_"))
@@ -27,6 +30,9 @@ export class Ahorcado {
   }
 
   estado(): string {
+    if (this._vidas <= 0) {
+      return "PERDISTE";
+    }
     const todasAdivinadas = this.palabra.split("").every((l) => this.letrasAdivinadas.has(l));
     if (todasAdivinadas) {
       return "GANASTE";
