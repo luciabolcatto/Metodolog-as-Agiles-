@@ -10,4 +10,4 @@ Característica: Perder partida
     Y el jugador adivina la letra "B"
     Y el jugador adivina la letra "N"
     Entonces se ve el mensaje "PERDISTE"
-    Y se ve la palabra "GATO"
+    Y se ve la palabra "G A T O"
