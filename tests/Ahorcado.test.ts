@@ -93,3 +93,18 @@ it("no permite jugar si el estado es GANASTE o PERDISTE", () => {
 it("asigna 4 vidas iniciales cuando la dificultad es dificil", () => {
   const juego = new Ahorcado("GATO", "dificil");
   expect(juego.vidas()).toBe(4); });
+
+it("el temporizador inicia en 300 segundos para dificultad media", () => {
+  const juego = new Ahorcado("GATO", "media");
+  expect(juego.tiempoRestante()).toBe(300);
+});
+
+it("el temporizador inicia en 180 segundos para dificultad difícil", () => {
+  const juego = new Ahorcado("GATO", "dificil");
+  expect(juego.tiempoRestante()).toBe(180);
+});
+
+it("formatea el tiempo como MM:SS", () => {
+  const juego = new Ahorcado("GATO", "media");
+  expect(juego.tiempoFormateado()).toBe("5:00");
+});
