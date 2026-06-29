@@ -3,19 +3,32 @@ export class Ahorcado {
   private _vidas: number = 6;
   private letrasAdivinadas: Set<string> = new Set();
   private _mensaje: string | null = null;
+  private tiempoEnSegundos: number;
 
   constructor(palabra: string, dificultad: string = "media") {
     this.palabra = palabra;
-  
-  if (dificultad === "dificil") {
+
+    if (dificultad === "dificil") {
       this._vidas = 4;
+      this.tiempoEnSegundos = 180; // 3 minutos
     } else if (dificultad === "facil") {
       this._vidas = 8;
+      this.tiempoEnSegundos = 300; // 5 minutos
     } else {
       this._vidas = 6; // Para "media" o si no pasan el parámetro
+      this.tiempoEnSegundos = 300; // 5 minutos
     }
   }
-  
+
+  tiempoRestante(): number {
+    return this.tiempoEnSegundos;
+  }
+
+  tiempoFormateado(): string {
+    const minutos = Math.floor(this.tiempoEnSegundos / 60);
+    const segundos = this.tiempoEnSegundos % 60;
+    return `${minutos}:${segundos.toString().padStart(2, "0")}`;
+  }
 
   adivinar(letra: string): void {
     if (this.estado() !== "JUGANDO") {
