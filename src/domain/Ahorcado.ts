@@ -24,6 +24,13 @@ export class Ahorcado {
     return this.tiempoEnSegundos;
   }
 
+  actualizarTiempo(segundosTranscurridos: number): void {
+    this.tiempoEnSegundos -= segundosTranscurridos;
+    if (this.tiempoEnSegundos < 0) {
+      this.tiempoEnSegundos = 0;
+    }
+  }
+
   tiempoFormateado(): string {
     const minutos = Math.floor(this.tiempoEnSegundos / 60);
     const segundos = this.tiempoEnSegundos % 60;
@@ -70,7 +77,7 @@ export class Ahorcado {
   }
 
   estado(): string {
-    if (this._vidas <= 0) {
+    if (this._vidas <= 0 || this.tiempoEnSegundos <= 0) {
       return "PERDISTE";
     }
     const todasAdivinadas = this.palabra.split("").every((l) => this.letrasAdivinadas.has(l));
