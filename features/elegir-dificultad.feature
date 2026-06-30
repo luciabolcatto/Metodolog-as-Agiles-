@@ -7,3 +7,6 @@ Característica: Elegir dificultad
     Cuando inicia una partida con la palabra "ESTERNOCLEIDOMASTOIDEO"
     Entonces se ve la palabra "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
     Y se ven 4 vidas
+
+
+    

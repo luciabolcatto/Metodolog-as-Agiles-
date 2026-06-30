@@ -3,29 +3,53 @@ import { createBdd } from "playwright-bdd";
 
 const { Given, When, Then } = createBdd();
 
-let dificultadSeleccionada = "media"; 
+function normalizarDificultad(dificultad: string): string {
+  return dificultad.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+Given("que el jugador abre la aplicación", async ({ page }) => {
+  await page.goto("/");
+});
+
+Given("que el jugador abre la aplicación con la palabra {string}", async ({ page }, palabra: string) => {
+  await page.goto(`/?word=${palabra}`);
+});
 
 Given("que el jugador selecciona la dificultad {string}", async ({ page }, dificultad: string) => {
- 
-  dificultadSeleccionada = dificultad
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+  await page.goto("/");
+  await page.getByTestId(`dificultad-${normalizarDificultad(dificultad)}`).click();
 });
+
 Given("una partida con la palabra {string}", async ({ page }, palabra: string) => {
-  await page.goto(`/?word=${palabra}&difficulty=${dificultadSeleccionada}`);
-  dificultadSeleccionada = "media"; // 💡 Limpiamos acá también
+  await page.goto(`/?word=${palabra}`);
+});
+
+When("el jugador elige la dificultad {string}", async ({ page }, dificultad: string) => {
+  await page.getByTestId(`dificultad-${normalizarDificultad(dificultad)}`).click();
+});
+When("elige la dificultad {string}", async ({ page }, dificultad: string) => {
+  await page.getByTestId(`dificultad-${dificultad.toLowerCase()}`).click();
+});
+When("presiona iniciar partida", async ({ page }) => {
+  await page.getByTestId("start-button").click();
 });
 
 When("inicia una partida con la palabra {string}", async ({ page }, palabra: string) => {
-  await page.goto(`/?word=${palabra}&difficulty=${dificultadSeleccionada}`);
-  dificultadSeleccionada = "media"; // 💡 Limpiamos acá
+  await page.goto(`/?word=${palabra}`);
 });
 
 When("el jugador adivina la letra {string}", async ({ page }, letra: string) => {
-  const input = page.getByRole("textbox");
+  const input = page.getByTestId("guess-input");
   await input.fill(letra);
   await input.press("Enter");
+});
+
+Then("ve el título {string}", async ({ page }, titulo: string) => {
+  await expect(page.getByRole("heading", { name: titulo })).toBeVisible();
+});
+
+Then("ve la opción de dificultad {string} seleccionada", async ({ page }, dificultad: string) => {
+  await expect(page.getByTestId(`dificultad-${dificultad.toLowerCase()}`)).toHaveClass(/active/);
 });
 
 Then("se ve la palabra {string}", async ({ page }, esperada: string) => {

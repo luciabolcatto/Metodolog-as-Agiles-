@@ -3,6 +3,141 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ahorcado</title>
+    <style>
+      :root {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: #f8fafc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      #app {
+        width: min(720px, calc(100vw - 32px));
+      }
+
+      .card {
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
+      }
+
+      .intro-screen {
+        text-align: center;
+      }
+
+      .intro-screen h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        letter-spacing: -0.04em;
+      }
+
+      .description {
+        margin: 0 0 24px;
+        color: #cbd5e1;
+        font-size: 1.05rem;
+      }
+
+      .difficulty-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .difficulty-button,
+      .start-button,
+      .guess-row button {
+        border: none;
+        border-radius: 14px;
+        padding: 16px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.16s ease, background-color 0.16s ease;
+      }
+
+      .difficulty-button {
+        background: rgba(148, 163, 184, 0.12);
+        color: #f8fafc;
+      }
+
+      .difficulty-button.active,
+      .difficulty-button:hover {
+        background: #2563eb;
+      }
+
+      .start-button,
+      .guess-row button {
+        background: #22c55e;
+        color: #0f172a;
+        width: 100%;
+      }
+
+      .start-button:hover,
+      .guess-row button:hover {
+        transform: translateY(-1px);
+      }
+
+      .status-row {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-bottom: 24px;
+      }
+
+      .status-card {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(148, 163, 184, 0.08);
+        text-align: center;
+      }
+
+      .status-card .label {
+        display: block;
+        color: #94a3b8;
+        margin-bottom: 8px;
+      }
+
+      .status-card strong {
+        font-size: 1.8rem;
+        letter-spacing: 0.08em;
+      }
+
+      .message {
+        min-height: 2.2rem;
+        margin: 0 0 24px;
+        color: #e2e8f0;
+      }
+
+      .guess-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+      }
+
+      .guess-row input {
+        border-radius: 14px;
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        padding: 16px 18px;
+        font-size: 1rem;
+        color: #0f172a;
+      }
+
+      input::placeholder {
+        color: #94a3b8;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
