@@ -1,4 +1,4 @@
-import { defineConfig } from "@playwright/test";
+import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from "playwright-bdd";
 
 const testDir = defineBddConfig({
@@ -12,6 +12,6 @@ export default defineConfig({
   webServer: {
     command: "npm run dev",
     url: "http://localhost:5173",
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
   },
 });
