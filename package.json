@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "vite",
-  "build": "tsc && vite build",
-  "test": "vitest",  
-  "at": "bddgen && playwright test"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",  
+    "at": "bddgen && playwright test"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,13 @@
     "url": "https://github.com/luciabolcatto/Metodolog-as-Agiles-/issues"
   },
   "homepage": "https://github.com/luciabolcatto/Metodolog-as-Agiles-#readme",
+  "dependencies": {
+    "typescript": "^5.4.0"
+  },
   "devDependencies": {
     "@playwright/test": "^1.61.0",
     "playwright-bdd": "^9.2.0",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.9",
+    "vite": "^5.0.0"
   }
 }
