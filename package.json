@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "test": "vitest",
-    "at": "bddgen && playwright test"
+  "dev": "vite",
+  "build": "tsc && vite build",
+  "test": "vitest",  
+  "at": "bddgen && playwright test"
   },
   "repository": {
     "type": "git",
