@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test:
+  ci-pipeline:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,12 +18,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
 
-      - name: Instalar dependencias
+      - name: 1. Instalar dependencias
         run: npm ci
 
-      - name: Compilar proyecto
+      - name: 2. Compilar el proyecto
         run: npm run build
 
-      - name: Ejecutar Unit Tests
+      - name: 3. Ejecutar los tests unitarios con Vitest
         run: npm test -- --run
+
+      - name: 4. Generar el reporte de cobertura
+        run: npm run test:coverage
+
+      - name: 5. Ejecutar análisis estático con ESLint
+        run: npm run lint
+
+      - name: 6. Instalar dependencias del sistema y navegadores de Playwright
+        run: npx playwright install --with-deps
+
+      - name: 7. Ejecutar los tests de aceptación con Playwright
+        run: npm run at
+
+      - name: Guardar reporte de Playwright si ocurre un fallo
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
