@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
+    "coverage": "vitest run --coverage",
     "lint": "eslint .",
     "at": "bddgen && playwright test"
   },

@@ -18,7 +18,7 @@ export function mountApp(container: HTMLElement, options: AppOptions): void {
     if (timerInterval !== null) return;
     timerInterval = window.setInterval(() => {
       if (juego && juego.estado() === "JUGANDO") {
-        (juego as any).actualizarTiempo(1);
+        juego.actualizarTiempo(1);
         render();
       } else if (timerInterval !== null) {
         window.clearInterval(timerInterval);

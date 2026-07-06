@@ -15,11 +15,12 @@ export default tseslint.config(
   },
   {
     ignores: [
-      "dist/",
-      "node_modules/",
-      "playwright-report/",
-      ".features-gen/",
-      "coverage/"
+      "dist/**",
+      "node_modules/**",
+      "playwright-report/**",
+      ".features-gen/**",
+      "coverage/**",
+      "test-results/**"
     ]
   },
   {
