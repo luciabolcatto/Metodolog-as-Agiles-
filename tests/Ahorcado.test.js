@@ -91,3 +91,5 @@ it("formatea el tiempo como MM:SS", () => {
     const juego = new Ahorcado("GATO", "media");
     expect(juego.tiempoFormateado()).toBe("5:00");
 });
+
+//ss
