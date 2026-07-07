@@ -92,4 +92,3 @@ it("formatea el tiempo como MM:SS", () => {
     expect(juego.tiempoFormateado()).toBe("5:00");
 });
 
-//ss
